@@ -8,9 +8,9 @@ import { ViaCEPAddressAPI } from "@/protocols";
 
 
 async function getAddressFromCEP(cep: string){
-
-   const result = await request.get(`https://viacep.com.br/ws/${cep}/json/`);
-   if (!result.data) {
+  const result = await request.get(`https://viacep.com.br/ws/${cep}/json/`);
+  
+  if (!result.data) {
     throw notFoundError();
   }
  
@@ -61,7 +61,8 @@ async function createOrUpdateEnrollmentWithAddress(params: CreateOrUpdateEnrollm
   const address = getAddressForUpsert(params.address);
   
   const response = await request.get(`https://viacep.com.br/ws/${address.cep}/json/`);
-  if(!response.data || response.data.error){
+  
+  if(!response.data || response.data.erro){
     throw notFoundError();
   }
 
